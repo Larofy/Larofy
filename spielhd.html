@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head >
+    <meta charset="utf-8" />
+    <title>Zahlenrätsel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+    <style>body{margin:0;padding:0;}
+        body{
+            text-align: center;
+        }
+        h1 {
+            color: white;
+            text-align: center;
+            font-size: 6vw;
+            padding-top: 30vh;
+            padding-bottom: 25px;
+            font-family: 'Monoton', sans-serif;
+
+        }
+        input {
+            height: 5vw;
+            font-size:3vw;
+            width:20vw;
+            border-top-left-radius:3vw;
+            border-bottom-left-radius:3vw;
+            padding-left:3vw;
+            border:none;
+            padding-top:0;
+            padding-bottom:0;
+
+        }
+        button{
+            height: 5vw;
+            font-size:3vw;
+            width:25vw;
+            border-top-right-radius:3vw;
+            border-bottom-right-radius:3vw;
+            border:none;
+            background-color:aqua;
+            font-family: 'Monoton', sans-serif;;
+        }
+        button{
+            height: 5vw;
+            font-size:3vw;
+            width:25vw;
+            border-top-right-radius:3vw;
+            border-bottom-right-radius:3vw;
+            border:none;
+            background-color:aqua;
+            font-family: 'Monoton', sans-serif;;
+        }
+        div {
+            text-align: center;
+
+            width: 50%;
+            margin: auto;
+            padding-top: 40px;
+            padding-bottom: 20;
+            padding-left: 20px;
+            padding-right: 20px;
+            margin-top: 15vh;
+
+        }
+
+        h2 {
+            color: white;
+        }
+
+
+        
+
+     
+        #auswertung{
+
+                color: white;
+                text-decoration: none;
+                padding: 10px 40px;
+                border-radius: 40px;
+                font-size: 40px;
+                text-align: center;
+
+                    }
+
+    </style>
+
+
+</head>
+
+<body>
+    <html>
+<head>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            
+        }
+        #video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%; 
+            min-height: 100%;
+            width: auto; 
+            height: auto;
+            z-index: -1000;
+        }
+        #video-container {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        #erste-zeile{
+            text-align:right;
+        }#erste-zeile{
+            width:15vw;
+            font-size:1.7vw;
+            border-radius: 3vw;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="video-container">
+        <video autoplay muted loop id="video-background">
+            <source src="vid12.mp4" type="video/mp4">
+            
+        </video>
+
+    </div>
+
+
+</body>
+
+</html>
+    <p>
+        <h1>Finde die geheime Zahl</h1>
+        <input id="eingabe">
+        <button onclick="prüfung()">Abschicken!</button>
+        <p id="auswertung"></p>
+        <button onclick="neustart()">Neustart</button>
+        <button onclick="English()">English</button>
+        
+        </p>
+    
+
+    <script>
+
+
+        function English() {
+            document.getElementById("H1").innerHTML = "Find the secret number!";
+            document.getElementById("neustartButton").innerHTML = "Restart!";
+            document.getElementById("auswertungButton").innerHTML = ">Go!";
+            sprache = "English";
+        }
+
+        
+
+
+        geheimzahl = Math.ceil(Math.random() * 100);
+        versuch = 1;
+
+
+        function prüfung() {
+            eingabe = document.getElementById("eingabe").value;
+
+            if (eingabe == geheimzahl) {
+                document.getElementById("auswertung").innerHTML = "Deine Zahl ist Richtig! Du hast " + versuch + " Versuche gebraucht";
+            }
+            if (eingabe > geheimzahl) {
+                document.getElementById("auswertung").innerHTML = "Zu groß";
+            }
+            if (eingabe < geheimzahl) {
+                document.getElementById("auswertung").innerHTML = "Deine Zahl ist zu klein";
+            }
+            versuch = versuch + 1
+        }
+
+        
+
+
+        function neustart(){
+            geheimzahl = Math.ceil(Math.random() * 100)
+            versuch =  1;
+            document.getElementById("eingabe").value = "";
+            document.getElementById("auswertung").innerHTML = "";
+        }
+
+        
+    </script>
+
+</body>
+</html>
