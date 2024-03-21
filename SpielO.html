@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Zahlenrätsel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: white;
+            font-size: 6vw;
+            padding-top: 15vh;
+            padding-bottom: 25px;
+            font-family: 'Monoton', sans-serif;
+        }
+
+        input {
+            height: 5vh;
+            font-size: 3vw;
+            width: 30vw;
+            border-radius: 3vw;
+            padding-left: 1vw;
+            border: none;
+            margin-bottom: 2vh;
+        }
+
+        button {
+            height: 5vh;
+            font-size: 3vw;
+            width: 30vw;
+            border-radius: 3vw;
+            border: none;
+            background-color: aqua;
+            font-family: 'Monoton', sans-serif;
+            margin-bottom: 2vh;
+        }
+
+        div {
+            text-align: center;
+            width: 50%;
+            margin: auto;
+            padding-top: 40px;
+            padding-bottom: 20;
+            padding-left: 20px;
+            padding-right: 20px;
+            margin-top: 5vh;
+        }
+
+        #auswertung {
+            color: white;
+            font-size: 4vw;
+            padding: 10px;
+            border-radius: 40px;
+            text-align: center;
+            margin-bottom: 2vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Finde die geheime Zahl</h1>
+        <input id="eingabe" type="number" min="1" max="100">
+        <button onclick="prüfung()">Abschicken!</button>
+        <p id="auswertung"></p>
+        <button onclick="neustart()">Neustart</button>
+        <button onclick="switchLanguage()">Sprache ändern</button>
+    </div>
+
+    <script>
+        let geheimzahl = Math.ceil(Math.random() * 100);
+        let versuch = 1;
+
+        function prüfung() {
+            let eingabe = parseInt(document.getElementById("eingabe").value);
+
+            if (isNaN(eingabe) || eingabe < 1 || eingabe > 100) {
+                document.getElementById("auswertung").innerHTML = "Bitte gib eine Zahl zwischen 1 und 100 ein.";
+                document.getElementById("auswertung").style.backgroundColor = "orange";
+            } else if (eingabe === geheimzahl) {
+                document.getElementById("auswertung").innerHTML = `Deine Zahl ${eingabe} ist Richtig! Du hast ${versuch} Versuche gebraucht`;
+                document.getElementById("auswertung").style.backgroundColor = "green";
+            } else if (eingabe > geheimzahl) {
+                document.getElementById("auswertung").innerHTML = "Zu groß";
+                document.getElementById("auswertung").style.backgroundColor = "red";
+            } else if (eingabe < geheimzahl) {
+                document.getElementById("auswertung").innerHTML = "Deine Zahl ist zu klein";
+                document.getElementById("auswertung").style.backgroundColor = "red";
+            }
+            versuch++;
+        }
+
+        function neustart() {
+            geheimzahl = Math.ceil(Math.random() * 100);
+            versuch = 1;
+            document.getElementById("eingabe").value = "";
+            document.getElementById("auswertung").innerHTML = "";
+            document.getElementById("auswertung").style.backgroundColor = "transparent";
+        }
+
+        function switchLanguage() {
+            let h1 = document.querySelector("h1");
+            let neustartButton = document.querySelectorAll("button")[1];
+            let auswertungButton = document.getElementById("auswertung");
+
+            if (h1.textContent === "Finde die geheime Zahl") {
+                h1.textContent = "Find the secret number!";
+                neustartButton.textContent = "Restart!";
+                auswertungButton.textContent = "Go!";
+            } else {
+                h1.textContent = "Finde die geheime Zahl";
+                neustartButton.textContent = "Neustart";
+                auswertungButton.textContent = "Abschicken!";
+            }
+        }
+    </script>
+</body>
+
+</html>
+
